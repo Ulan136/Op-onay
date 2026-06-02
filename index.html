@@ -1,0 +1,193 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<title>be1.ru</title>
+</head>
+<body>
+<p>&nbsp;</p>
+
+<p>&lt;!DOCTYPE html&gt;<br />
+&lt;html lang=&quot;ru&quot;&gt;<br />
+&lt;head&gt;<br />
+&nbsp; &lt;meta charset=&quot;UTF-8&quot;&gt;<br />
+&nbsp; &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;<br />
+&nbsp; &lt;title&gt;Калькулятор&lt;/title&gt;<br />
+&nbsp; &lt;style&gt;<br />
+&nbsp; &nbsp; body {<br />
+&nbsp; &nbsp; &nbsp; font-family: Arial, sans-serif;<br />
+&nbsp; &nbsp; &nbsp; background: #1e1e1e;<br />
+&nbsp; &nbsp; &nbsp; color: #fff;<br />
+&nbsp; &nbsp; &nbsp; margin: 0;<br />
+&nbsp; &nbsp; &nbsp; padding: 15px;<br />
+&nbsp; &nbsp; &nbsp; text-align: center;<br />
+&nbsp; &nbsp; }<br />
+&nbsp; &nbsp; h1 {<br />
+&nbsp; &nbsp; &nbsp; color: #0f0;<br />
+&nbsp; &nbsp; &nbsp; margin: 10px 0 20px 0;<br />
+&nbsp; &nbsp; &nbsp; font-size: 28px;<br />
+&nbsp; &nbsp; }<br />
+&nbsp; &nbsp; .price-container {<br />
+&nbsp; &nbsp; &nbsp; background: #333;<br />
+&nbsp; &nbsp; &nbsp; padding: 15px;<br />
+&nbsp; &nbsp; &nbsp; border-radius: 10px;<br />
+&nbsp; &nbsp; &nbsp; margin: 15px auto;<br />
+&nbsp; &nbsp; &nbsp; max-width: 400px;<br />
+&nbsp; &nbsp; &nbsp; font-size: 18px;<br />
+&nbsp; &nbsp; }<br />
+&nbsp; &nbsp; input[type=&quot;number&quot;] {<br />
+&nbsp; &nbsp; &nbsp; width: 90px;<br />
+&nbsp; &nbsp; &nbsp; padding: 10px;<br />
+&nbsp; &nbsp; &nbsp; background: #222;<br />
+&nbsp; &nbsp; &nbsp; border: 1px solid #555;<br />
+&nbsp; &nbsp; &nbsp; color: white;<br />
+&nbsp; &nbsp; &nbsp; border-radius: 6px;<br />
+&nbsp; &nbsp; &nbsp; text-align: center;<br />
+&nbsp; &nbsp; &nbsp; font-size: 16px;<br />
+&nbsp; &nbsp; }<br />
+&nbsp; &nbsp; table {<br />
+&nbsp; &nbsp; &nbsp; width: 100%;<br />
+&nbsp; &nbsp; &nbsp; max-width: 900px;<br />
+&nbsp; &nbsp; &nbsp; margin: 20px auto;<br />
+&nbsp; &nbsp; &nbsp; border-collapse: collapse;<br />
+&nbsp; &nbsp; &nbsp; background: #252525;<br />
+&nbsp; &nbsp; &nbsp; border-radius: 8px;<br />
+&nbsp; &nbsp; &nbsp; overflow: hidden;<br />
+&nbsp; &nbsp; }<br />
+&nbsp; &nbsp; th, td {<br />
+&nbsp; &nbsp; &nbsp; border: 1px solid #444;<br />
+&nbsp; &nbsp; &nbsp; padding: 12px 8px;<br />
+&nbsp; &nbsp; &nbsp; text-align: center;<br />
+&nbsp; &nbsp; }<br />
+&nbsp; &nbsp; th {<br />
+&nbsp; &nbsp; &nbsp; background: #0f0;<br />
+&nbsp; &nbsp; &nbsp; color: black;<br />
+&nbsp; &nbsp; &nbsp; font-weight: bold;<br />
+&nbsp; &nbsp; }<br />
+&nbsp; &nbsp; .total {<br />
+&nbsp; &nbsp; &nbsp; font-size: 26px;<br />
+&nbsp; &nbsp; &nbsp; font-weight: bold;<br />
+&nbsp; &nbsp; &nbsp; color: #0f0;<br />
+&nbsp; &nbsp; &nbsp; margin: 25px 0;<br />
+&nbsp; &nbsp; }<br />
+&nbsp; &nbsp; button {<br />
+&nbsp; &nbsp; &nbsp; padding: 12px 20px;<br />
+&nbsp; &nbsp; &nbsp; margin: 8px;<br />
+&nbsp; &nbsp; &nbsp; font-size: 16px;<br />
+&nbsp; &nbsp; &nbsp; border: none;<br />
+&nbsp; &nbsp; &nbsp; border-radius: 8px;<br />
+&nbsp; &nbsp; &nbsp; cursor: pointer;<br />
+&nbsp; &nbsp; }<br />
+&nbsp; &nbsp; .add-btn {&nbsp;<br />
+&nbsp; &nbsp; &nbsp; background: #0f0;&nbsp;<br />
+&nbsp; &nbsp; &nbsp; color: black;&nbsp;<br />
+&nbsp; &nbsp; &nbsp; font-weight: bold;<br />
+&nbsp; &nbsp; }<br />
+&nbsp; &nbsp; .clear-btn { background: #dc3545; color: white; }<br />
+&nbsp; &nbsp; .delete-btn {&nbsp;<br />
+&nbsp; &nbsp; &nbsp; background: #ff4444;&nbsp;<br />
+&nbsp; &nbsp; &nbsp; color: white;&nbsp;<br />
+&nbsp; &nbsp; &nbsp; padding: 6px 12px;<br />
+&nbsp; &nbsp; &nbsp; font-size: 14px;<br />
+&nbsp; &nbsp; }<br />
+&nbsp; &lt;/style&gt;<br />
+&lt;/head&gt;<br />
+&lt;body&gt;<br />
+&nbsp; &lt;h1&gt;🔢 КАЛЬКУЛЯТОР&lt;/h1&gt;</p>
+
+<p>&nbsp; &lt;div class=&quot;price-container&quot;&gt;<br />
+&nbsp; &nbsp; &lt;strong&gt;Цена за см:&lt;/strong&gt;&nbsp;<br />
+&nbsp; &nbsp; &lt;input type=&quot;number&quot; id=&quot;globalPrice&quot; value=&quot;70&quot; step=&quot;1&quot; oninput=&quot;calculateAll()&quot;&gt;<br />
+&nbsp; &nbsp; &lt;strong&gt; ₸/см&lt;/strong&gt;<br />
+&nbsp; &lt;/div&gt;</p>
+
+<p>&nbsp; &lt;table id=&quot;calcTable&quot;&gt;<br />
+&nbsp; &nbsp; &lt;thead&gt;<br />
+&nbsp; &nbsp; &nbsp; &lt;tr&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;th&gt;№&lt;/th&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;th&gt;См&lt;/th&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;th&gt;Шт&lt;/th&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;th&gt;См &times; Шт&lt;/th&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;th&gt;Сумма (₸)&lt;/th&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;th&gt;✕&lt;/th&gt;<br />
+&nbsp; &nbsp; &nbsp; &lt;/tr&gt;<br />
+&nbsp; &nbsp; &lt;/thead&gt;<br />
+&nbsp; &nbsp; &lt;tbody id=&quot;tableBody&quot;&gt;&lt;/tbody&gt;<br />
+&nbsp; &lt;/table&gt;</p>
+
+<p>&nbsp; &lt;div&gt;<br />
+&nbsp; &nbsp; &lt;button class=&quot;add-btn&quot; onclick=&quot;addRow()&quot;&gt;+ ДОБАВИТЬ СТРОКУ&lt;/button&gt;<br />
+&nbsp; &nbsp; &lt;button class=&quot;clear-btn&quot; onclick=&quot;clearAll()&quot;&gt;🗑️ ОЧИСТИТЬ ВСЁ&lt;/button&gt;<br />
+&nbsp; &lt;/div&gt;</p>
+
+<p>&nbsp; &lt;div class=&quot;total&quot; id=&quot;totalSum&quot;&gt;ИТОГО: 0 ₸&lt;/div&gt;</p>
+
+<p>&nbsp; &lt;script&gt;<br />
+&nbsp; &nbsp; let rowCount = 0;</p>
+
+<p>&nbsp; &nbsp; function addRow(cm = 0, qty = 0) {<br />
+&nbsp; &nbsp; &nbsp; rowCount++;<br />
+&nbsp; &nbsp; &nbsp; const tbody = document.getElementById(&#39;tableBody&#39;);<br />
+&nbsp; &nbsp; &nbsp; const row = document.createElement(&#39;tr&#39;);<br />
+&nbsp; &nbsp; &nbsp; row.innerHTML = `<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;td&gt;${rowCount}&lt;/td&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;td&gt;&lt;input type=&quot;number&quot; value=&quot;${cm}&quot; oninput=&quot;calculateAll()&quot;&gt;&lt;/td&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;td&gt;&lt;input type=&quot;number&quot; value=&quot;${qty}&quot; oninput=&quot;calculateAll()&quot;&gt;&lt;/td&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;td class=&quot;length&quot;&gt;0&lt;/td&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;td class=&quot;sum&quot;&gt;0&lt;/td&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;td&gt;&lt;button class=&quot;delete-btn&quot; onclick=&quot;deleteRow(this)&quot;&gt;✕&lt;/button&gt;&lt;/td&gt;<br />
+&nbsp; &nbsp; &nbsp; `;<br />
+&nbsp; &nbsp; &nbsp; tbody.appendChild(row);<br />
+&nbsp; &nbsp; &nbsp; calculateAll();<br />
+&nbsp; &nbsp; }</p>
+
+<p>&nbsp; &nbsp; function deleteRow(btn) {<br />
+&nbsp; &nbsp; &nbsp; btn.parentElement.parentElement.remove();<br />
+&nbsp; &nbsp; &nbsp; renumberRows();<br />
+&nbsp; &nbsp; &nbsp; calculateAll();<br />
+&nbsp; &nbsp; }</p>
+
+<p>&nbsp; &nbsp; function renumberRows() {<br />
+&nbsp; &nbsp; &nbsp; const rows = document.querySelectorAll(&#39;#tableBody tr&#39;);<br />
+&nbsp; &nbsp; &nbsp; rows.forEach((row, i) =&gt; {<br />
+&nbsp; &nbsp; &nbsp; &nbsp; row.cells[0].textContent = i + 1;<br />
+&nbsp; &nbsp; &nbsp; });<br />
+&nbsp; &nbsp; &nbsp; rowCount = rows.length;<br />
+&nbsp; &nbsp; }</p>
+
+<p>&nbsp; &nbsp; function calculateAll() {<br />
+&nbsp; &nbsp; &nbsp; const price = parseFloat(document.getElementById(&#39;globalPrice&#39;).value) || 0;<br />
+&nbsp; &nbsp; &nbsp; let total = 0;</p>
+
+<p>&nbsp; &nbsp; &nbsp; document.querySelectorAll(&#39;#tableBody tr&#39;).forEach(row =&gt; {<br />
+&nbsp; &nbsp; &nbsp; &nbsp; const cm = parseFloat(row.cells[1].querySelector(&#39;input&#39;).value) || 0;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; const qty = parseFloat(row.cells[2].querySelector(&#39;input&#39;).value) || 0;<br />
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; const length = cm * qty;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; const sum = Math.round(length * price);</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp; row.cells[3].textContent = length;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; row.cells[4].textContent = sum.toLocaleString(&#39;ru-RU&#39;);</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp; total += sum;<br />
+&nbsp; &nbsp; &nbsp; });</p>
+
+<p>&nbsp; &nbsp; &nbsp; document.getElementById(&#39;totalSum&#39;).textContent = `ИТОГО: ${total.toLocaleString(&#39;ru-RU&#39;)} ₸`;<br />
+&nbsp; &nbsp; }</p>
+
+<p>&nbsp; &nbsp; function clearAll() {<br />
+&nbsp; &nbsp; &nbsp; if (confirm(&#39;Очистить весь список?&#39;)) {<br />
+&nbsp; &nbsp; &nbsp; &nbsp; document.getElementById(&#39;tableBody&#39;).innerHTML = &#39;&#39;;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; rowCount = 0;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; document.getElementById(&#39;totalSum&#39;).textContent = &#39;ИТОГО: 0 ₸&#39;;<br />
+&nbsp; &nbsp; &nbsp; }<br />
+&nbsp; &nbsp; }</p>
+
+<p>&nbsp; &nbsp; // Запуск<br />
+&nbsp; &nbsp; window.onload = () =&gt; {<br />
+&nbsp; &nbsp; &nbsp; for (let i = 0; i &lt; 8; i++) addRow();<br />
+&nbsp; &nbsp; };<br />
+&nbsp; &lt;/script&gt;<br />
+&lt;/body&gt;<br />
+&lt;/html&gt;</p>
+</body>
+</html>
